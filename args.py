@@ -1,7 +1,7 @@
 import math
 
-class Args(object):  # 创建Circle类
-    def __init__(self):  # 约定成俗这里应该使用r，它与self.r中的r同名
+class Args(object):
+    def __init__(self):
         self.synthetic_train_data_dir = 'C://aster.pytorch-master//data//Case-Sensitive-Scene-Text-Recognition-Datasets-master//svt_train//'
         self.test_data_dir = 'C://aster.pytorch-master//data//Case-Sensitive-Scene-Text-Recognition-Datasets-master//cute80_test//'
         self.logs_dir = 'C://aster.pytorch-master//logs'
@@ -27,7 +27,7 @@ class Args(object):  # 创建Circle类
         self.loss_weights = [1.0,1.0,1.0]
         self.seed = 1
         self.print_freq = 1
-        self.cuda = False
+
         self.evaluation_metric = 'accuracy'
         self.evaluate_with_lexicon = False
         self.debug = False
@@ -49,12 +49,16 @@ class Args(object):  # 创建Circle类
         self.epochs = 15
 
 
-        #训练测试值不同
-        # self.evaluate = False
-        # self.resume = ''
+        #  训练
+        self.evaluate = False
+        self.resume = ''
+        #  测试
+        # self.evaluate = True
+        # self.beam_width = 5
+        # self.resume = 'C://aster.pytorch-master//demo.pth.tar'
 
-        self.evaluate = True
-        self.beam_width = 5
-        self.resume = 'C://aster.pytorch-master//demo.pth.tar'
-
+        # colab
+        self.cuda = True
+        # 本地
+        #self.cuda = False
 
