@@ -21,6 +21,7 @@ from torch.utils import data
 from torch.utils.data import sampler
 from torchvision import transforms
 
+from args import Args
 from lib.utils.labelmaps import get_vocabulary, labels2strs
 from lib.utils import to_numpy
 
@@ -28,8 +29,8 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 from config import get_args
 
-global_args = get_args(sys.argv[1:])
-
+#global_args = get_args(sys.argv[1:])
+global_args = Args()
 if global_args.run_on_remote:
     import moxing as mox
 
@@ -92,7 +93,7 @@ class LmdbDataset(data.Dataset):
             print('Corrupted image for %d' % index)
             return self[index + 1]
 
-        # reconition labels
+        # recognition labels
         label_key = b'label-%09d' % index
         word = self.txn.get(label_key).decode()
         if self.lowercase:
@@ -204,7 +205,7 @@ def test():
         lines = [line.strip('\n') for line in f.readlines()]
     num_samples = len(lines)
     train_dataset = LmdbDataset(root=lmdb_path, voc_type='ALLCASES_SYMBOLS', max_len=50, num_samples=num_samples)
-    batch_size = 1
+    batch_size = 2
     train_dataloader = data.DataLoader(
         train_dataset,
         batch_size=batch_size,
@@ -225,6 +226,7 @@ def test():
             # image = toPILImage(image)
             image.show()
             print(image.size)
+            print(label)
             print(labels2strs(label, train_dataset.id2char, train_dataset.char2id))
             print(label_len.item())
             input()

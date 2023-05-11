@@ -11,6 +11,7 @@ from random import randint
 from PIL import Image
 import sys
 
+from args import Args
 from . import evaluation_metrics
 from .evaluation_metrics import Accuracy, EditDistance, RecPostProcess
 from .utils.meters import AverageMeter
@@ -19,8 +20,8 @@ from .utils.visualization_utils import recognition_vis, stn_vis
 metrics_factory = evaluation_metrics.factory()
 
 from config import get_args
-global_args = get_args(sys.argv[1:])
-
+#global_args = get_args(sys.argv[1:])
+global_args = Args()
 class BaseEvaluator(object):
   def __init__(self, model, metric, use_cuda=True):
     super(BaseEvaluator, self).__init__()
@@ -70,7 +71,8 @@ class BaseEvaluator(object):
       end = time.time()
 
       if (i + 1) % print_freq == 0:
-        print('[{}]\t'
+        print('evaluators.py\t'
+              '[{}]\t'
               'Evaluation: [{}/{}]\t'
               'Time {:.3f} ({:.3f})\t'
               'Data {:.3f} ({:.3f})\t'

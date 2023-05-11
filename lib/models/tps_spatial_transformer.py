@@ -90,9 +90,6 @@ class TPSSpatialTransformer(nn.Module):
     X = torch.true_divide(X, self.target_width - 1)
     target_coordinate = torch.cat([X, Y], dim=1) # convert from (y, x) to (x, y)
     target_coordinate_partial_repr = compute_partial_repr(target_coordinate, target_control_points)
-    #print('target_coordinate_partial_repr.dtype: ', target_coordinate_partial_repr.dtype)  # x的具体类型
-    #print('torch.ones(HW, 1).dtype: ', torch.ones(HW, 1).dtype)  # x的具体类型
-    #print('target_coordinate.dtype: ', target_coordinate.dtype)  # x的具体类型
     target_coordinate_repr = torch.cat([target_coordinate_partial_repr, torch.ones(HW, 1).to(torch.float64), target_coordinate.to(torch.float64)], dim=1)
 
     # register precomputed matrices

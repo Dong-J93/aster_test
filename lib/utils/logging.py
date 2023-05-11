@@ -3,7 +3,10 @@ import os
 import sys
 import numpy as np
 import tensorflow as tf
-import scipy.misc 
+import scipy.misc
+
+from args import Args
+
 try:
   from StringIO import StringIO  # Python 2.7
 except ImportError:
@@ -12,8 +15,8 @@ except ImportError:
 from .osutils import mkdir_if_missing
 
 from config import get_args
-global_args = get_args(sys.argv[1:])
-
+#global_args = get_args(sys.argv[1:])
+global_args = Args()
 if global_args.run_on_remote:
   import moxing as mox
   mox.file.shift("os", "mox")

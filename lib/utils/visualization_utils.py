@@ -6,7 +6,7 @@ import numpy as np
 from collections import OrderedDict
 #from scipy.misc import imresize
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from io import BytesIO

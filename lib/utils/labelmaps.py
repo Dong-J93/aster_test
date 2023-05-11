@@ -18,7 +18,7 @@ def get_vocabulary(voc_type, EOS='EOS', PADDING='PADDING', UNKNOWN='UNKNOWN'):
     voc = list(string.printable[:-6])
   else:
     raise KeyError('voc_type must be one of "LOWERCASE", "ALLCASES", "ALLCASES_SYMBOLS"')
-
+  #  voc = 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&'()*+, -./:;<=>?@[\]^_`{|}~
   # update the voc with specifical chars
   voc.append(EOS)
   voc.append(PADDING)

@@ -3,10 +3,11 @@ import sys
 import torch
 import torch.nn as nn
 
+from args import Args
 from config import get_args
 
-global_args = get_args(sys.argv[1:])
-
+#global_args = get_args(sys.argv[1:])
+global_args = Args()
 
 def conv3x3(in_planes, out_planes, stride=1):
   """3x3 convolution with padding"""

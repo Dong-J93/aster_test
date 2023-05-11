@@ -6,6 +6,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
+from args import Args
 from config import get_args
 from lib.loss import SequenceCrossEntropyLoss
 from lib.models import create
@@ -15,8 +16,8 @@ from lib.models.stn_head import STNHead
 from lib.models.tps_spatial_transformer import TPSSpatialTransformer
 #from ..loss.sequenceCrossEntropyLoss import SequenceCrossEntropyLoss
 
-global_args = get_args(sys.argv[1:])
-
+#global_args = get_args(sys.argv[1:])
+global_args = Args()
 
 class ModelBuilder(nn.Module):
   """
@@ -73,7 +74,7 @@ class ModelBuilder(nn.Module):
       stn_input = F.interpolate(x, self.tps_inputsize, mode='bilinear', align_corners=True)
       #interpolate上采样函数，将x resize到tps_inputsize 成为stn_input
       stn_img_feat, ctrl_points = self.stn_head(stn_input)
-      #stn_img_feat是stn_fc1的输出512 1x1
+      #stn_img_feat是stn_fc1的输出512 1x1ctrl_points
       x, _ = self.tps(x, ctrl_points)
       if not self.training:
         # save for visualization

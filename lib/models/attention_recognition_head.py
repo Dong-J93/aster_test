@@ -30,7 +30,7 @@ class AttentionRecognitionHead(nn.Module):
 
     for i in range(max(lengths)):
       if i == 0:
-        y_prev = torch.zeros((batch_size)).fill_(self.num_classes) # the last one is used as the <BOS>.
+        y_prev = torch.zeros((batch_size)).fill_(self.num_classes)  # the last one is used as the <BOS>.
       else:
         y_prev = targets[:,i-1]
 
