@@ -7,7 +7,6 @@ from torch import nn
 from torch.nn import functional as F
 
 from args import Args
-from config import get_args
 from lib.loss import SequenceCrossEntropyLoss
 from lib.models import create
 from lib.models.attention_recognition_head import AttentionRecognitionHead
@@ -16,7 +15,6 @@ from lib.models.stn_head import STNHead
 from lib.models.tps_spatial_transformer import TPSSpatialTransformer
 #from ..loss.sequenceCrossEntropyLoss import SequenceCrossEntropyLoss
 
-#global_args = get_args(sys.argv[1:])
 global_args = Args()
 
 class ModelBuilder(nn.Module):

@@ -2,10 +2,12 @@ import math
 
 class Args(object):
     def __init__(self):
-        self.synthetic_train_data_dir = 'C://aster.pytorch-master//data//Case-Sensitive-Scene-Text-Recognition-Datasets-master//svt_train//'
-        self.test_data_dir = 'C://aster.pytorch-master//data//Case-Sensitive-Scene-Text-Recognition-Datasets-master//cute80_test//'
-        self.logs_dir = 'C://aster.pytorch-master//logs'
-        self.real_logs_dir = 'C://aster.pytorch-master//logs'
+        self.synthetic_train_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/iiit5k_train/'
+        #self.test_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/iiit5k_test/'
+        self.test_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/cute80_test/'
+        self.logs_dir = '/logs'
+        self.real_logs_dir = '/logs'
+        #self.vis_dir = 'iiit5k_test_visualization'
         self.vis_dir = 'visualization'
         self.batch_size = 128
         self.workers = 0
@@ -15,7 +17,7 @@ class Args(object):
         self.voc_type = 'ALLCASES_SYMBOLS'
         self.num_train = math.inf
         self.num_test = math.inf
-        self.image_path = 'C://aster.pytorch-master//data/demo.png'
+        self.image_path = '/data/demo.png'
         self.tps_inputsize = [32, 64]
         self.tps_outputsize = [32,100]
         self.arch = 'ResNet_ASTER'
@@ -46,7 +48,7 @@ class Args(object):
         self.with_lstm = True
         self.momentum = 0.9
         self.weight_decay = 0.0
-        self.epochs = 15
+        self.epochs = 5000
 
 
         #  训练

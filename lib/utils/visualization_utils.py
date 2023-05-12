@@ -76,10 +76,14 @@ def stn_vis(raw_images, rectified_images, ctrl_points, preds, targets, real_scor
 
   # draw images on canvas
   vis_images = []
-  num_sub_plot = 2
+  num_sub_plot = 3
   raw_images = raw_images.astype(np.uint8)
   rectified_images = rectified_images.astype(np.uint8)
+
+  pred_list, targ_list = get_str_list(preds, targets, dataset)
+
   for i in range(batch_size):
+    plt.ion()
     fig = plt.figure()
     ax = [fig.add_subplot(num_sub_plot,1,i+1) for i in range(num_sub_plot)]
     for a in ax:
@@ -87,8 +91,20 @@ def stn_vis(raw_images, rectified_images, ctrl_points, preds, targets, real_scor
       a.set_yticklabels([])
       a.axis('off')
     ax[0].imshow(raw_images[i])
-    ax[0].scatter(ctrl_points[i,:,0], ctrl_points[i,:,1], marker='+', s=5)
+    ax[0].scatter(ctrl_points[i,:,0], ctrl_points[i,:,1], marker='+', s=20, c='r')
     ax[1].imshow(rectified_images[i])
+    #ax[2].set_title("{}".format(pred_list[i]))
+    ax[2].text(x=0.5,y=0.8,s="{}".format(pred_list[i]),transform=ax[2].transAxes,
+               fontdict=dict(fontsize=20, color='b',#字体属性设置
+                       family='monospace',#字体,可选'serif', 'sans-serif', 'cursive', 'fantasy', 'monospace'
+                       weight='bold',#磅值，可选'light', 'normal', 'medium', 'semibold', 'bold', 'heavy', 'black'
+                      ),
+                bbox = {'facecolor': '#74C476',  # 填充色
+                        'edgecolor': 'b',  # 外框色
+                        'alpha': 0.5,  # 框透明度
+                        'pad': 8,  # 本文与框周围距离
+                        }
+              )
     # plt.subplots_adjust(wspace=0, hspace=0)
     plt.show()
     buffer_ = BytesIO()

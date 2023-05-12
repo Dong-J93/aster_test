@@ -20,9 +20,6 @@ from .utils.serialization import load_checkpoint, save_checkpoint
 
 metrics_factory = evaluation_metrics.factory()
 
-from config import get_args
-
-#global_args = get_args(sys.argv[1:])
 global_args = Args()
 
 class BaseTrainer(object):

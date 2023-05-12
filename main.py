@@ -22,7 +22,6 @@ from torch.backends import cudnn
 from torch.utils.data import DataLoader, SubsetRandomSampler
 
 from args import Args
-from config import get_args
 from lib import datasets, evaluation_metrics, models
 from lib.models.model_builder import ModelBuilder
 from lib.datasets.dataset import LmdbDataset, AlignCollate
@@ -34,7 +33,6 @@ from lib.utils.logging import Logger, TFLogger
 from lib.utils.serialization import load_checkpoint, save_checkpoint
 from lib.utils.osutils import make_symlink_if_not_exists
 
-# global_args = get_args(sys.argv[1:])
 global_args = Args()
 
 

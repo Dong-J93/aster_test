@@ -27,9 +27,6 @@ from lib.utils import to_numpy
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-from config import get_args
-
-#global_args = get_args(sys.argv[1:])
 global_args = Args()
 if global_args.run_on_remote:
     import moxing as mox

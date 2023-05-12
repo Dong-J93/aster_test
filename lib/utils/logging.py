@@ -14,8 +14,6 @@ except ImportError:
 
 from .osutils import mkdir_if_missing
 
-from config import get_args
-#global_args = get_args(sys.argv[1:])
 global_args = Args()
 if global_args.run_on_remote:
   import moxing as mox

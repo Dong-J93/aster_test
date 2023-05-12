@@ -19,8 +19,6 @@ from .utils.visualization_utils import recognition_vis, stn_vis
 
 metrics_factory = evaluation_metrics.factory()
 
-from config import get_args
-#global_args = get_args(sys.argv[1:])
 global_args = Args()
 class BaseEvaluator(object):
   def __init__(self, model, metric, use_cuda=True):
