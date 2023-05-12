@@ -49,7 +49,7 @@ class Args(object):
         self.momentum = 0.9
         self.weight_decay = 0.0
         self.epochs = 5000
-
+        self.beam_width = 5
 
         #  训练
         self.evaluate = False
