@@ -77,7 +77,8 @@ def Accuracy(output, target, dataset=None):
   pred_list, targ_list = get_str_list(output, target, dataset)
 
   acc_list = [(pred == targ) for pred, targ in zip(pred_list, targ_list)]
-  accuracy = 1.0 * sum(acc_list) / len(acc_list)
+  #accuracy = //
+  accuracy = torch.true_divide( 1.0 * sum(acc_list),len(acc_list))
   return accuracy
 
 
@@ -87,7 +88,8 @@ def Accuracy_with_lexicon(output, target, dataset=None, file_names=None):
 
   # with no lexicon
   acc_list = [(pred == targ) for pred, targ in zip(pred_list, targ_list)]
-  accuracy = 1.0 * sum(acc_list) / len(acc_list)
+  #accuracy = 1.0 * sum(acc_list) // len(acc_list)
+  accuracy = torch.true_divide(1.0 * sum(acc_list), len(acc_list))
   accuracys.append(accuracy)
 
   # lexicon50
@@ -96,7 +98,8 @@ def Accuracy_with_lexicon(output, target, dataset=None, file_names=None):
   else:
     refined_pred_list = [_lexicon_search(dataset.lexicons50[file_name], pred) for file_name, pred in zip(file_names, pred_list)]
     acc_list = [(pred == targ) for pred, targ in zip(refined_pred_list, targ_list)]
-    accuracy = 1.0 * sum(acc_list) / len(acc_list)
+    #accuracy = 1.0 * sum(acc_list) // len(acc_list)
+    accuracy = torch.true_divide(1.0 * sum(acc_list), len(acc_list))
     accuracys.append(accuracy)
 
   # lexicon1k
@@ -105,7 +108,8 @@ def Accuracy_with_lexicon(output, target, dataset=None, file_names=None):
   else:
     refined_pred_list = [_lexicon_search(dataset.lexicons1k[file_name], pred) for file_name, pred in zip(file_names, pred_list)]
     acc_list = [(pred == targ) for pred, targ in zip(refined_pred_list, targ_list)]
-    accuracy = 1.0 * sum(acc_list) / len(acc_list)
+    #accuracy = 1.0 * sum(acc_list) // len(acc_list)
+    accuracy = torch.true_divide(1.0 * sum(acc_list), len(acc_list))
     accuracys.append(accuracy)
 
   # lexiconfull
@@ -114,7 +118,8 @@ def Accuracy_with_lexicon(output, target, dataset=None, file_names=None):
   else:
     refined_pred_list = [_lexicon_search(dataset.lexiconsfull[file_name], pred) for file_name, pred in zip(file_names, pred_list)]
     acc_list = [(pred == targ) for pred, targ in zip(refined_pred_list, targ_list)]
-    accuracy = 1.0 * sum(acc_list) / len(acc_list)
+    #accuracy = 1.0 * sum(acc_list) // len(acc_list)
+    accuracy = torch.true_divide(1.0 * sum(acc_list), len(acc_list))
     accuracys.append(accuracy)    
 
   return accuracys

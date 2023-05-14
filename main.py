@@ -1,16 +1,11 @@
 from __future__ import absolute_import
 import sys
 
-import keras
 
 sys.path.append('./')
 import os
 
-import argparse
-import os
-
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-from keras import optimizers
 import os.path as osp
 import numpy as np
 import math
@@ -196,7 +191,7 @@ def main(args):
     # Optimizer
     param_groups = model.parameters()
     param_groups = filter(lambda p: p.requires_grad, param_groups)
-    optimizer = optim.Adam(param_groups, lr=args.lr, weight_decay=args.weight_decay)
+    optimizer = optim.SGD(param_groups, lr=args.lr, weight_decay=args.weight_decay)
     # optimizer = torch.optim.adadelta(param_groups, lr=args.lr, decay=args.weight_decay)  #
     scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[4, 5], gamma=0.1)  # 动态调整学习率
     print('Optimizer over')

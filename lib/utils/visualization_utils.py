@@ -6,7 +6,8 @@ import numpy as np
 from collections import OrderedDict
 #from scipy.misc import imresize
 import matplotlib
-matplotlib.use('TkAgg')
+#matplotlib.use('TkAgg')
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 from io import BytesIO
@@ -121,7 +122,7 @@ def stn_vis(raw_images, rectified_images, ctrl_points, preds, targets, real_scor
   if vis_dir is None:
     return vis_images
   else:
-    pred_list, targ_list = get_str_list(preds, targets, dataset)
+    #pred_list, targ_list = get_str_list(preds, targets, dataset)
     file_path_list = []
     for id, (image, pred, target, real_score) in enumerate(zip(vis_images, pred_list, targ_list, real_scores)):
       if pred.lower() == target.lower():

@@ -86,7 +86,8 @@ class BaseEvaluator(object):
     else:
       num_samples = sum([subimages.size(0) for subimages in images])
     targets = torch.cat(targets)
-    losses = np.sum(losses) / (1.0 * num_samples)
+    #losses = np.sum(losses) / (1.0 * num_samples)
+    losses = torch.true_divide(np.sum(losses), (1.0 * num_samples))
     for k, v in outputs.items():
       outputs[k] = torch.cat(outputs[k])
 

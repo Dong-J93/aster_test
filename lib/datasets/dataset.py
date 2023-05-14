@@ -15,7 +15,7 @@ import cv2
 import lmdb
 import sys
 import six
-
+import numpy as np
 import torch
 from torch.utils import data
 from torch.utils.data import sampler
@@ -171,7 +171,7 @@ class AlignCollate(object):
     def __call__(self, batch):
         images, labels, lengths = zip(*batch)
         b_lengths = torch.IntTensor(lengths)
-        b_labels = torch.IntTensor(labels)
+        b_labels = torch.IntTensor(np.array(labels))
 
         imgH = self.imgH
         imgW = self.imgW
@@ -179,7 +179,7 @@ class AlignCollate(object):
             ratios = []
             for image in images:
                 w, h = image.size
-                ratios.append(w / float(h))
+                ratios.append( torch.true_divide(w,float(h)))
             ratios.sort()
             max_ratio = ratios[-1]
             imgW = int(np.floor(max_ratio * imgH))

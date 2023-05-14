@@ -2,13 +2,13 @@ import math
 
 class Args(object):
     def __init__(self):
-        self.synthetic_train_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/iiit5k_train/'
-        #self.test_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/iiit5k_test/'
-        self.test_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/cute80_test/'
+        self.synthetic_train_data_dir = '/content/aster_test/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/iiit5k_train/'
+        self.test_data_dir = '/content/aster_test/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/iiit5k_test/'
+        #self.test_data_dir = '/data/Case-Sensitive-Scene-Text-Recognition-Datasets-master/cute80_test/'
         self.logs_dir = '/logs'
         self.real_logs_dir = '/logs'
-        #self.vis_dir = 'iiit5k_test_visualization'
-        self.vis_dir = 'visualization'
+        self.vis_dir = 'iiit5k_test_visualization'
+        #self.vis_dir = 'visualization'
         self.batch_size = 128
         self.workers = 0
         self.height = 64
@@ -28,7 +28,7 @@ class Args(object):
         self.stn_with_dropout = False
         self.loss_weights = [1.0,1.0,1.0]
         self.seed = 1
-        self.print_freq = 1
+        self.print_freq = 100
 
         self.evaluation_metric = 'accuracy'
         self.evaluate_with_lexicon = False
@@ -48,7 +48,7 @@ class Args(object):
         self.with_lstm = True
         self.momentum = 0.9
         self.weight_decay = 0.0
-        self.epochs = 5000
+        self.epochs = 2000
         self.beam_width = 5
 
         #  训练

@@ -71,6 +71,8 @@ class TFLogger(object):
 
   def scalar_summary(self, tag, value, step):
     """Log a scalar variable."""
+
+
     #summary = tf.Summary(value=[tf.Summary.Value(tag=tag, simple_value=value)])
    # summary = tf.compat.v1.Summary(value=[tf.compat.v1.Summary.Value(tag=tag, simple_value=value)])
     summary = value

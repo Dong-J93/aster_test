@@ -106,7 +106,7 @@ class AttentionRecognitionHead(nn.Module):
       sequence_scores = scores.view(batch_size * beam_width, 1)
 
       # Update fields for next timestep
-      predecessors = (candidates / self.num_classes + pos_index.expand_as(candidates)).view(batch_size * beam_width, 1)
+      predecessors = (candidates // self.num_classes + pos_index.expand_as(candidates)).view(batch_size * beam_width, 1)
       state = state.index_select(1, predecessors.squeeze())
 
       # Update sequence socres and erase scores for <eos> symbol so that they aren't expanded
@@ -148,7 +148,7 @@ class AttentionRecognitionHead(nn.Module):
           # with b*k as the first dimension, and b, k for
           # the first two dimensions
           idx = eos_indices[i]
-          b_idx = int(idx[0] / beam_width)
+          b_idx = int(torch.true_divide(idx[0] , beam_width))
           # The indices of the replacing position
           # according to the replacement strategy noted above
           res_k_idx = beam_width - (batch_eos_found[b_idx] % beam_width) - 1

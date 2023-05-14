@@ -66,7 +66,7 @@ class BaseTrainer(object):
                 loss = loss.mean(dim=0, keepdim=True)
                 total_loss += self.loss_weights[k] * loss
                 loss_dict[k] = loss.item()
-                print('{0}: {1}'.format(k, loss.item()))
+                #print('{0}: {1}'.format(k, loss.item()))
 
             losses.update(total_loss.item(), batch_size)
 

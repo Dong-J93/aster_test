@@ -1,5 +1,7 @@
 from __future__ import absolute_import
 
+import torch
+
 
 class AverageMeter(object):
   """Computes and stores the average and current value"""
@@ -20,4 +22,4 @@ class AverageMeter(object):
     self.val = val
     self.sum += val * n
     self.count += n
-    self.avg = self.sum / self.count
+    self.avg = torch.true_divide(self.sum , self.count)

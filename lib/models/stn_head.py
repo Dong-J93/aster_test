@@ -63,7 +63,7 @@ class STNHead(nn.Module):
     for m in module.modules():
       if isinstance(m, nn.Conv2d):
         n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-        m.weight.data.normal_(0, math.sqrt(2. / n))
+        m.weight.data.normal_(0, math.sqrt(torch.true_divide(2. , n)))
         if m.bias is not None:
           m.bias.data.zero_()
       elif isinstance(m, nn.BatchNorm2d):
@@ -75,7 +75,7 @@ class STNHead(nn.Module):
 
   def init_stn(self, stn_fc2):
     margin = 0.01
-    sampling_num_per_side = int(self.num_ctrlpoints / 2)
+    sampling_num_per_side = int(torch.true_divide(self.num_ctrlpoints , 2))
     ctrl_pts_x = np.linspace(margin, 1.-margin, sampling_num_per_side)
     ctrl_pts_y_top = np.ones(sampling_num_per_side) * margin
     ctrl_pts_y_bottom = np.ones(sampling_num_per_side) * (1-margin)
@@ -85,7 +85,7 @@ class STNHead(nn.Module):
     if self.activation is 'none':
       pass
     elif self.activation == 'sigmoid':
-      ctrl_points = -np.log(1. / ctrl_points - 1.)
+      ctrl_points = -np.log(torch.true_divide(1. , ctrl_points - 1.))
     # 初始化定位网络仿射矩阵的权重/偏置，即是初始化θ值。使得图片的空间转换从原始图像开始。
     stn_fc2.weight.data.zero_()
     stn_fc2.bias.data = torch.tensor(ctrl_points).view(-1)

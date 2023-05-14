@@ -60,8 +60,10 @@ class SequenceCrossEntropyLoss(nn.Module):
         ##
         output = torch.sum(output)
         if self.sequence_normalize:
-            output = output / torch.sum(mask)
+            #output = output / torch.sum(mask)
+            output = torch.true_divide(output, torch.sum(mask))
         if self.sample_normalize:
-            output = output / batch_size
+            #output = output / batch_size
+            output = torch.true_divide(output, batch_size)
 
         return output
